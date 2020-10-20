@@ -92,13 +92,15 @@ Happy hacking!
 2. ESLint の設定ファイルである `.eslintrc.json` を作成する
 
     VSCode のコマンドパレットを開き `ESLint: Create ESLint Configuration` を実行し，次のように入力すると `.eslintrc.json` が作成される（ `node_modules/.bin/eslint --init` を実行するのと同じ）．
+
     ![fig1](./lintrc-screen.jpeg)
+
     特に気をつけなければならないのは
     - Which framework does your project use?
       今回は **`React`** を選択する（ `Vue` もある）．
     - Does your project use TypeScript?: **Yes**
     - What format do you want your config file to be in?
-    `.json` の形式で設定することもできるが，今回は `.js` の場合を説明する．
+    `.js` の形式で設定することもできるが，今回は `.json` の場合を説明する．
     - Would you like to install them now with npm?: **No**
 
     入力を終えるとプロジェクトフォルダの中に `.eslintrc.json` が作成される．以下のようになっているかを確認する．
