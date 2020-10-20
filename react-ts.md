@@ -144,6 +144,7 @@ Happy hacking!
      }
      ```
      として，ダブルクオーテーションでないとエラーが出るように設定してみる．写真のようになれば， ESLint が動いていることが確認できる．
+     
      ![fig](lint-check.jpeg)
 
 ### Prettier の導入
@@ -181,6 +182,8 @@ Happy hacking!
    }
    ```
    保存したあと， `app.tsx` に適当にスペースを加えてフォーマットを乱すと ESLint のエラーとして写真のように出力される．
+   
    ![fig](prettier-check.jpeg)
+   
    赤い波線部をホバーして `Quick Fix` から `fix this prettier/prettier problem` 又は `fix all auto-fixable problem` を選ぶか，保存をすると自動整形される．
     
