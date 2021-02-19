@@ -90,9 +90,9 @@ Happy hacking!
       [^formatOnSave]: 似た設定で `editor.formatOnSave` というものもありますが，こちらは現在非推奨です（引用は VSCode ESLint Extention の `eslint.format.enable` より）．
           > Although you can also use the formatter on save using the setting `editor.formatOnSave` it is recommended to use the `editor.codeActionsOnSave` feature since it allows for better configurability. 
 
-2. ESLint の設定ファイルである `.eslintrc.json` の作成
+2. ESLint の設定
 
-    VSCode のコマンドパレットを開き `ESLint: Create ESLint Configuration` を実行し，次のように入力すると `.eslintrc.json` が作成されます（ `node_modules/.bin/eslint --init` を実行するのと同じ）．
+    VSCode のコマンドパレットを開き `ESLint: Create ESLint Configuration` を実行します（ `node_modules/.bin/eslint --init` を実行するのと同じ）．次のように入力していくと `.eslintrc.js` と `package.json` が作成されます．
 
     ![fig1](./lintrc-screen.jpeg)
 
@@ -101,31 +101,27 @@ Happy hacking!
       今回は **`React`** を選択（ `Vue` もある）．
     - Does your project use TypeScript?: **Yes**
     - What format do you want your config file to be in?:
-    `.js` の形式で設定することもできますが，今回は `.json` の場合を説明します．
+    `.json` の形式で設定することもできますが，今回は `.js` の場合を説明します．
     - Would you like to install them now with npm?: **No**
 
-    入力を終えるとプロジェクトフォルダの中に `.eslintrc.json` が作成されます．以下のようになっているか確認します．
+    入力を終えるとプロジェクトフォルダの中に `.eslintrc.js` が作成されるので，以下のようになっているか確認します．
     ```javascript
-    {
+    module.exports = {
         "env": {
             "browser": true,
-            "es6": true
+            "es2021": true
         },
         "extends": [
             "eslint:recommended",
             "plugin:react/recommended",
-            "plugin:@typescript-eslint/eslint-recommended"
+            "plugin:@typescript-eslint/recommended"
         ],
-        "globals": {
-            "Atomics": "readonly",
-            "SharedArrayBuffer": "readonly"
-        },
         "parser": "@typescript-eslint/parser",
         "parserOptions": {
             "ecmaFeatures": {
                 "jsx": true
             },
-            "ecmaVersion": 2018,
+            "ecmaVersion": 12,
             "sourceType": "module"
         },
         "plugins": [
@@ -134,7 +130,7 @@ Happy hacking!
         ],
         "rules": {
         }
-     }
+    };
      ```
      試しに `"rules"` の部分を
      ```javascript
@@ -147,6 +143,17 @@ Happy hacking!
      として，ダブルクオーテーションでないとエラーが出るように設定してみましょう．写真のようになれば， ESLint が動いていることが確認できるはずです．
      
      ![fig](lint-check.jpeg)
+
+     また ESLint の設定は `.eslintrc.js` でなされているので，`package.json` の `eslintConfig` の設定は削除します（残しておいた場合も `.eslintrc.js` の方の設定が優先されます）．
+     ```javascript
+     {
+       ...,
+       "eslintConfig": {  //削除
+         "extends": "react-app"
+       },
+       ...,
+     }
+     ```
 
 ### Prettier の導入
 1. Prettier をインストールする
@@ -171,7 +178,7 @@ Happy hacking!
    ```
 
 1. `eslint-plugin-prettier` の適用
-   `.eslintrc.json` の `"extends"` を以下のように書き加えます．
+   `.eslintrc.js` の `"extends"` を以下のように書き加えます．
    ```javascript
    {
      "extends": [
